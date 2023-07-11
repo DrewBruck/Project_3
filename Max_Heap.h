@@ -13,46 +13,77 @@ Assignment: Project 3 - Create a max priority heap, where every parent has a
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 
-template <typename T> class Max_heap {
+template <typename T> 
+class MaxHeap {
 private:
     
     int current_size_;
-    T heap[MAX_SIZE+1];
-    vector<T> history;
+    T heap[1000];
+    std::vector<T> history;
  
 public:
-    Max_heap() {current_size_=0;}
+    MaxHeap(){
+        current_size_=0; 
+    }
 
-    int getCurrentSize(){return current_size_;}
-
-    // void printHeap(){
-    //     for(int i : heap){
-    //         std::cout << heap[i] << " ";
-    //     }
-    //     std::cout << "\n";
+    //template<typename T>
+    // MaxHeap(T first){
+    //     current_size_=0;
+    //     InsertIntoHeap(first);
     // }
+    
+    int getCurrentSize(){return current_size_;}
+    
+    void printHeap(){
+        for(int i = 0; i <current_size_; i++){
+            std::cout << heap[i];
+            // heap[i].PrintCustomer();
+        }
+        //std::cout << "\n";
+    }
 
+    bool isEmpty(){
+        if (current_size_>0)
+            return false;
+        else
+            return true; 
+    }
+    
+    bool isFull(){
+        if(current_size_== sizeof(heap))
+            return true;
+        else
+            return false;
+    }
+
+    
     void InsertIntoHeap(T new_item){
-        if( isFull())
-            throw Overflow("Sorry, mate.  Heap is all filled up.");
+        if(isFull())
+            //throw Overflow("Sorry, mate.  Heap is all filled up.");
+            std::cout << "it's full dickhead.";
 
         //Percolate up
-        int hole = current_size+1;
-        while( hole>1 && new_item > heap[hole/2]){
+        int hole = current_size_+1;
+        while( hole>1 && (new_item > heap[hole/2])){
             heap[hole] = heap[hole/2];
             hole = hole/2;
         }
         heap[hole] = new_item;
+        current_size_++;
     }
+   
     void InsertHistory(T cust){
         history.pushback(cust);
         std::sort(history.begin(), history.end(), [](T a, T b)
         {
             return (a < b);
         });
+
     }
+    
     void PercolateDown(int hole){
         int child;
         T temp = heap[hole];
@@ -69,12 +100,15 @@ public:
         heap[hole] = temp;
 
     }
+  
     void deleteMin(){
-        if ( isEmpty())
-            throw Underflow ("It's empty now, Dunski.")
-        heap[1] = heap[current_size];
+        if (isEmpty())
+            //throw Underflow ("It's empty now, Dunski.")
+        heap[1].SetServiceTime();
+        InsertHistory(heap[1]);
+        heap[1] = heap[current_size_];
         current_size_--;
-        percolateDown[1];
+        PercolateDown(1);
     }
 };
 

@@ -79,27 +79,32 @@ class Customer
         }
         //Overload the < operator.
         bool operator<(const Customer rhs){
-            return (priority_< rhs.priority_);
+            return (service_time_< rhs.service_time_);
         }
         //Overload the > operator.
         bool operator>(const Customer rhs){
-            return (priority_< rhs.priority_);
+            return (priority_ > rhs.priority_);
+        }
+
+        //Overload the << operator so that print can be called to the class.
+        friend std::ostream& operator<<(std::ostream &os, Customer cus){
+            os << "Name: " << cus.GetName() << "\nPriority: " << cus.priority_ << "\nService Time: " << cus.service_time_ << "\n\n";
+            return os;
         }
 
 }; //end customer class
 
 
 int main(){
-    std::vector<Customer> history;
+
     //test zero-parameter constructor & PrintCustomer() function
     Customer Drew;
     Drew.SetName("Drewski");
-    Drew.PrintCustomer();
+    // std::cout << Drew;      //test operator << override
 
     //test parameterized constructor
     Customer Jayme("Jayme");
-    Jayme.SetServiceTime();
-    Jayme.PrintCustomer();
+    // std::cout << Jayme;
 
     // //Test getter functions
     // std::cout << Drew.GetName() << "\n";
@@ -115,44 +120,31 @@ int main(){
     // copy2.PrintCustomer();
 
     Customer Matt("Matt");
-    Matt.SetServiceTime();
-    Matt.PrintCustomer();
+    // std::cout << Matt;
 
     Customer Adam("Adam");
-    Adam.SetServiceTime();
-    Adam.PrintCustomer();
+    // std::cout<<Adam;
 
     Customer Germaine("Germaine");
-    Germaine.SetServiceTime();
-    Germaine.PrintCustomer();
+    // std::cout << Germaine;
 
     Customer Erica("Erica");
-    Erica.SetServiceTime();
-    Erica.PrintCustomer();
+    // std::cout << Erica;
 
-    history.push_back(Drew);
-    history.push_back(Jayme);
-    history.push_back(Matt);
-    history.push_back(Adam);
-    history.push_back(Erica);
-    history.push_back(Germaine);
+//Test heap construction
+    MaxHeap<Customer> Lucy;
+    Lucy.InsertIntoHeap(Drew);
+    Lucy.InsertIntoHeap(Jayme);
+    Lucy.InsertIntoHeap(Matt);
+    Lucy.InsertIntoHeap(Adam);
+    Lucy.InsertIntoHeap(Germaine);
+    Lucy.InsertIntoHeap(Erica);
+    Lucy.printHeap();
 
 
-std::cout << "Testing vector order: \n";
-for (int i = 0; i<history.size(); i++){
-    history[i].PrintCustomer();
-}
 
-std::cout << (Matt<Jayme);
-std::sort(history.begin(), history.end(), [](Customer a, Customer b)
-{
-    return (a < b);
-});
-
-std::cout << "Testing sorted vector order: \n";
-for (int i = 0; i<history.size(); i++){
-    history[i].PrintCustomer();
-}
+// std::cout << "Heap testing";
+// Lucy.printHeap();
 
 
 

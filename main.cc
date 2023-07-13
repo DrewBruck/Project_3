@@ -151,6 +151,10 @@ std::cout << "\nHistory array checks\n";
 //Test History vector insertion and ordering.
     Lucy.deleteMin();
     Lucy.deleteMin();
+    Lucy.deleteMin();
+    Lucy.deleteMin();
+    Lucy.deleteMin();
+    
 
     Lucy.printHeap();
 

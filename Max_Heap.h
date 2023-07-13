@@ -117,7 +117,7 @@ public:
             throw std::underflow_error("It's empty now, Dunski.");
         heap[1].SetServiceTime();
         InsertHistory(heap[1]);
-        heap[1] = heap[current_size_];
+        heap[1] = heap[current_size_-1];
         current_size_--;
         PercolateDown(1);
     }
@@ -128,9 +128,6 @@ public:
 //make sure history is always sorted small to high. so std::sort(s.begin(), s.end()) after every insert.
 
 /*
-1.) Create a template class for a max-heap by modifying the code given in the
-notes for min-heap. Property of a max-heap: a binary tree has the heap order
-property if every node is bigger than or equal to its two children.
 
 3.) Modify the max-heap template class you created to be able to store Customer objects using priority level as the comparable metric.
 Modify the max-heap template class function DeleteMax() to return the Customer object being deleted. Set the service time of the deleted customer using the function you created in part 2, then store this deleted customer in a

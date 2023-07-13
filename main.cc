@@ -27,11 +27,13 @@ class Customer
         Customer(){
             name_ = "";
             SetPriorityLevel();
+            service_time_=0;
         }
         //Parameterized constructor
         Customer(std::string str){
             SetName(str);
             SetPriorityLevel();
+            service_time_=0;
         }
         //SetName() takes user input and modifies name_.
         void SetName(std::string str){
@@ -131,6 +133,8 @@ int main(){
     Customer Erica("Erica");
     // std::cout << Erica;
 
+    Customer Frank("Frank");
+
 //Test heap construction
     MaxHeap<Customer> Lucy;
     Lucy.InsertIntoHeap(Drew);
@@ -139,8 +143,19 @@ int main(){
     Lucy.InsertIntoHeap(Adam);
     Lucy.InsertIntoHeap(Germaine);
     Lucy.InsertIntoHeap(Erica);
+    Lucy.InsertIntoHeap(Frank);
     Lucy.printHeap();
 
+
+std::cout << "\nHistory array checks\n";
+//Test History vector insertion and ordering.
+    Lucy.deleteMin();
+    Lucy.deleteMin();
+
+    Lucy.printHeap();
+
+std::cout << "\nHistory array: \n";
+    Lucy.printHistory();
 
 
 // std::cout << "Heap testing";

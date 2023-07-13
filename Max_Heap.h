@@ -14,6 +14,7 @@ Assignment: Project 3 - Create a max priority heap, where every parent has a
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 
 template <typename T> 
@@ -26,7 +27,7 @@ private:
  
 public:
     MaxHeap(){
-        current_size_=0; 
+        current_size_=1; 
     }
 
     //template<typename T>
@@ -38,12 +39,21 @@ public:
     int getCurrentSize(){return current_size_;}
     
     void printHeap(){
-        for(int i = 0; i <current_size_; i++){
+        for(int i = 1; i <current_size_; i++){
+            std::cout <<"heap[" << i << "]\n";
             std::cout << heap[i];
-            // heap[i].PrintCustomer();
+            
         }
-        //std::cout << "\n";
     }
+
+    void printHistory(){
+        for(int i = 0; i <history.size(); i++){
+            std::cout <<"history[" << i << "]\n";
+            std::cout << history[i];
+            
+        }
+    }
+
 
     bool isEmpty(){
         if (current_size_>0)
@@ -62,21 +72,22 @@ public:
     
     void InsertIntoHeap(T new_item){
         if(isFull())
-            //throw Overflow("Sorry, mate.  Heap is all filled up.");
-            std::cout << "it's full dickhead.";
+            throw std::overflow_error("Sorry, mate.  Heap is all filled up.");
 
         //Percolate up
-        int hole = current_size_+1;
-        while( hole>1 && (new_item > heap[hole/2])){
+        
+        int hole = current_size_;
+        while( (hole > 1) && (new_item > heap[hole/2])){
             heap[hole] = heap[hole/2];
             hole = hole/2;
         }
         heap[hole] = new_item;
         current_size_++;
+        
     }
    
     void InsertHistory(T cust){
-        history.pushback(cust);
+        history.push_back(cust);
         std::sort(history.begin(), history.end(), [](T a, T b)
         {
             return (a < b);
@@ -103,7 +114,7 @@ public:
   
     void deleteMin(){
         if (isEmpty())
-            //throw Underflow ("It's empty now, Dunski.")
+            throw std::underflow_error("It's empty now, Dunski.");
         heap[1].SetServiceTime();
         InsertHistory(heap[1]);
         heap[1] = heap[current_size_];

@@ -113,8 +113,15 @@ public:
     }
   
     void deleteMin(){
-        if (isEmpty())
+        try{
+            if (isEmpty())
             throw std::underflow_error("It's empty now, Dunski.");
+        }
+        catch(std::underflow_error){
+            std::cout << "Can't delete. It's empty now, Dunski.\n";
+            std::cout << "Ignoring last command, and pressing on.";
+            return;
+        }
         heap[1].SetServiceTime();
         InsertHistory(heap[1]);
         heap[1] = heap[current_size_-1];
@@ -124,6 +131,14 @@ public:
 };
 
 
+
+// try {
+//   // Block of code to try
+//   throw exception; // Throw an exception when a problem arise
+// }
+// catch () {
+//   // Block of code to handle errors
+// }
 
 //make sure history is always sorted small to high. so std::sort(s.begin(), s.end()) after every insert.
 

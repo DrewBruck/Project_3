@@ -154,7 +154,10 @@ std::cout << "\nHistory array checks\n";
     Lucy.deleteMin();
     Lucy.deleteMin();
     Lucy.deleteMin();
-    
+    Lucy.deleteMin();
+    Lucy.deleteMin();
+    Lucy.deleteMin();
+    Lucy.deleteMin();
 
     Lucy.printHeap();
 

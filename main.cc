@@ -137,32 +137,32 @@ int main(){
 
 //Test heap construction
     MaxHeap<Customer> Lucy;
-    Lucy.InsertIntoHeap(Drew);
-    Lucy.InsertIntoHeap(Jayme);
-    Lucy.InsertIntoHeap(Matt);
-    Lucy.InsertIntoHeap(Adam);
-    Lucy.InsertIntoHeap(Germaine);
-    Lucy.InsertIntoHeap(Erica);
-    Lucy.InsertIntoHeap(Frank);
-    Lucy.printHeap();
+    // Lucy.insertIntoHeap(Drew);
+    // Lucy.insertIntoHeap(Jayme);
+    // Lucy.insertIntoHeap(Matt);
+    // Lucy.insertIntoHeap(Adam);
+    // Lucy.insertIntoHeap(Germaine);
+    // Lucy.insertIntoHeap(Erica);
+    // Lucy.insertIntoHeap(Frank);
+    // Lucy.printHeap();
 
 
-std::cout << "\nHistory array checks\n";
+// std::cout << "\nHistory array checks\n";
 //Test History vector insertion and ordering.
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
-    Lucy.deleteMin();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
+    // Lucy.deleteMax();
 
-    Lucy.printHeap();
+    //Lucy.printHeap();
 
-std::cout << "\nHistory array: \n";
-    Lucy.printHistory();
+// std::cout << "\nHistory array: \n\n";
+    // Lucy.printHistory();
 
 
 // std::cout << "Heap testing";
